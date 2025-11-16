@@ -8,8 +8,11 @@ require_once __DIR__ . '/../src/Sellable.php';
 require_once __DIR__ . '/../src/Book.php';
 require_once __DIR__ . '/../src/Notebook.php';
 
+  
+
 
 $products = [];
+
 
 foreach ($rows as $row) {
     if ($row['type'] === 'book') {
@@ -44,6 +47,7 @@ foreach ($rows as $row) {
         </div>
     </div>
 </header>
+ 
 
 <main class="site-main">
     <section class="hero">
@@ -55,6 +59,7 @@ foreach ($rows as $row) {
             </p>
         </div>
     </section>
+
 
     <section class="product-list-section">
         <div class="section-heading">
@@ -112,5 +117,7 @@ foreach ($rows as $row) {
     <p>عبارت محرمانه دانشجو: <?php echo STUDENT_SECRET_PHRASE; ?></p>
 </footer>
 <script src="assets/app.js"></script>
+
+
 </body>
 </html>
