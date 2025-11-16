@@ -32,3 +32,4 @@ public function getPrice(): int
     abstract public function getTypeLabel(): string;
 }
 
+
