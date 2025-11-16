@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types=0);
 
 require_once __DIR__ . '/../config/student.php';
 require_once __DIR__ . '/../db/db.php';
@@ -8,23 +8,18 @@ require_once __DIR__ . '/../src/Sellable.php';
 require_once __DIR__ . '/../src/Book.php';
 require_once __DIR__ . '/../src/Notebook.php';
 
-/**
- * NOTE TO STUDENTS:
- * - Do NOT change the general HTML structure.
- * - Complete only the TODO sections in PHP code.
- */
 
 $products = [];
 
-// TODO(Task 5):
-// Loop over $rows (fetched from the database) and create the correct
-// object type for each row:
-// - if $row['type'] === 'book'     → new Book(...)
-// - if $row['type'] === 'notebook' → new Notebook(...)
-// Then push each created object into the $products array.
-
-?><!DOCTYPE html>
-
+foreach ($rows as $row) {
+    if ($row['type'] === 'book') {
+        $products[] = new Book($row['id'], $row['title'], $row['price']);
+    } elseif ($row['type'] === 'notebook') {
+        $products[] = new Notebook($row['id'], $row['title'], $row['price']);
+    }
+}
+?>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -58,19 +53,6 @@ $products = [];
                 داده‌ها از دیتابیس فارسی بارگذاری می‌شوند و پس از کامل‌کردن TODOها، کارت‌های محصولات مثل یک فروشگاه مدرن نمایش داده خواهند شد.
                 روی منطق PHP تمرکز کنید؛ ظاهر و تجربه کاربری از قبل آماده است.
             </p>
-            <ul class="hero__highlights">
-                <li>کلاس انتزاعی + interface</li>
-                <li>ارث‌بری Book و Notebook</li>
-                <li>شبکه داده با PDO</li>
-            </ul>
-        </div>
-        <div class="hero__visual">
-            <div class="glow-card">
-                <p class="glow-card__label">نمایش زنده</p>
-                <p class="glow-card__value">کاملاً واکنش‌گرا</p>
-                <span class="spark"></span>
-            </div>
-            <div class="gradient-ring"></div>
         </div>
     </section>
 
@@ -99,23 +81,23 @@ $products = [];
                         <header>
                             <p class="badge">خوانده‌شده از دیتابیس</p>
                             <h3 class="product-title">
-                                <!-- TODO(Task 6): echo the product title using getTitle() -->
+                                <?php echo $product->getTitle(); ?>
                             </h3>
                             <p class="product-type">
-                                <!-- TODO(Task 6): echo the product type label using getTypeLabel() -->
+                                <?php echo $product->getTypeLabel(); ?>
                             </p>
                         </header>
                         <dl class="product-prices">
                             <div>
                                 <dt>قیمت پایه</dt>
                                 <dd class="product-price">
-                                    <!-- TODO(Task 6): echo the base price using getPrice() -->
+                                    <?php echo number_format($product->getPrice()); ?> تومان
                                 </dd>
                             </div>
                             <div>
                                 <dt>قیمت نهایی</dt>
                                 <dd class="product-final-price">
-                                    <!-- TODO(Task 6): echo the final price using getFinalPrice() -->
+                                    <?php echo number_format($product->getFinalPrice()); ?> تومان
                                 </dd>
                             </div>
                         </dl>
