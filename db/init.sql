@@ -10,3 +10,4 @@ INSERT INTO products (title, price, type) VALUES
 ('مهارت‌های HTML و CSS', 120000, 'book'),
 ('دفتر ساده A5', 30000, 'notebook'),
 ('دفتر شطرنجی A4', 45000, 'notebook');
+
